@@ -1,4 +1,15 @@
-runtime: go116
+runtime: go122
+
+env_variables:
+  BUCKET_NAME: "example-gcs-bucket"
+
+main: ./main.go
+
 handlers:
 - url: /.*
   script: auto
+
+- url: /.*
+  script: auto
+
+service: nube
