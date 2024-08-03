@@ -42,3 +42,19 @@ go get -u github.com/go-echarts/go-echarts/..
 
 **Fuente de echarts**
 https://blog.logrocket.com/visualizing-data-go-echarts/
+
+Para usar google app engine, primero hay que bajar gcloud-cli y en un repo local hacer init:
+```
+gcloud init
+```
+
+Deployar en google app engine
+```
+gcloud app deploy app.yaml
+```
+
+Se necesita un archivo de configuración para google app engine:
+```
+app.yaml
+```
+Ubicado en la raíz del directorio
