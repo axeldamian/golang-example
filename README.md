@@ -23,3 +23,16 @@ buildear
 ```
 go build app.go
 ```
+
+El mod lo genere:
+```
+go mod init app
+```
+
+Bajar echarts
+```
+go get -u github.com/go-echarts/go-echarts/..
+```
+
+**Fuente de echarts**
+https://blog.logrocket.com/visualizing-data-go-echarts/
