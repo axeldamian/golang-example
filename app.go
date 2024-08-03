@@ -4,10 +4,10 @@ import(
 	"fmt"
 	"math/rand"
 	"os"
+	"net/http"
 
 	"github.com/go-echarts/go-echarts/v2/charts"
 	"github.com/go-echarts/go-echarts/v2/opts"
-
 	"github.com/go-echarts/go-echarts/v2/components"
 )
 
@@ -15,6 +15,10 @@ var (
 	itemCntPie = 4
 	seasons    = []string{"Spring", "Summer", "Autumn ", "Winter"}
 )
+
+func handler(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprintf(w, "Hello, World!")
+}
 
 func translado(i, j int) (int , int) {
 	return i + 1 , j + 1
@@ -77,4 +81,6 @@ func main() {
 		// Where the magic happens
 		//f, _ := os.Create("bar.html")
 		//bar.Render(f)
+    http.HandleFunc("/", handler)
+    http.ListenAndServe(":8080", nil)
 }
