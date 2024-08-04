@@ -61,3 +61,9 @@ Ubicado en la raíz del directorio
 
 Donde ver el programa en funcionamiento
 https://nube-gpbybwgp7q-uc.a.run.app
+
+Comando que use para deployar
+```
+gcloud run deploy
+```
+Cuando pregunta por el código fuente, apretar ENTER
