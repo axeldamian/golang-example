@@ -19,7 +19,7 @@ var (
 )
 
 type Json struct {
-    Response string
+    Response string `json:"response"`
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
@@ -92,13 +92,15 @@ func main() {
 			log.Println("endpoint /ping")
 			var value string = "pong"
 			d := Json{value}
+			//json.NewEncoder(w).Encode(d)
+			w.Header().Set("Content-Type", "application/json")
+			w.WriteHeader(http.StatusOK)
 			json.NewEncoder(w).Encode(d)
 		})
 
 		http.HandleFunc("/bar/", func(w http.ResponseWriter, r *http.Request) {
 			log.Println("endpoint /bar")
 			http.ServeFile(w, r, "bar.html")
-			return
 		})
 
 		http.HandleFunc("/pie/", func(w http.ResponseWriter, r *http.Request) {
@@ -106,7 +108,7 @@ func main() {
 			http.ServeFile(w, r, "pie.html")
 		})
 
-		http.HandleFunc("/", handler)
+		http.HandleFunc("/", handler )
 
 		log.Println("listening in port 8080...")
     http.ListenAndServe(":8080", nil)
