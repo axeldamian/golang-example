@@ -6,6 +6,7 @@ import(
 	"os"
 	"net/http"
 	"log"
+	"encoding/json"
 
 	"github.com/go-echarts/go-echarts/v2/charts"
 	"github.com/go-echarts/go-echarts/v2/opts"
@@ -16,6 +17,10 @@ var (
 	itemCntPie = 4
 	seasons    = []string{"Spring", "Summer", "Autumn ", "Winter"}
 )
+
+type Json struct {
+    Response string
+}
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	 	log.Println("endpoint /")
@@ -56,7 +61,7 @@ func pieBase() *charts.Pie {
 func main() {
   x , y := translado( 1 , 2 )
 	s := fmt.Sprintf("translado is %v , %v", x , y )
-	fmt.Println(s)
+	fmt.Println(s) // uso una funcion con 2 valores.
 
 	page := components.NewPage()
 	page.AddCharts(
@@ -83,17 +88,26 @@ func main() {
 		// Where the magic happens
 		//f, _ := os.Create("bar.html")
 		//bar.Render(f)
-		http.HandleFunc("/bar", func(w http.ResponseWriter, r *http.Request) {
-			log.Println("endpoint /bar")
-    	http.ServeFile(w, r, "bar.html")
+		http.HandleFunc("/ping", func(w http.ResponseWriter, r *http.Request) {
+			log.Println("endpoint /ping")
+			var value string = "pong"
+			d := Json{value}
+			json.NewEncoder(w).Encode(d)
 		})
 
-		http.HandleFunc("/pie", func(w http.ResponseWriter, r *http.Request) {
+		http.HandleFunc("/bar/", func(w http.ResponseWriter, r *http.Request) {
+			log.Println("endpoint /bar")
+			http.ServeFile(w, r, "bar.html")
+			return
+		})
+
+		http.HandleFunc("/pie/", func(w http.ResponseWriter, r *http.Request) {
 			log.Println("endpoint /pie")
 			http.ServeFile(w, r, "pie.html")
 		})
 
-    http.HandleFunc("/", handler)
-		
+		http.HandleFunc("/", handler)
+
+		log.Println("listening in port 8080...")
     http.ListenAndServe(":8080", nil)
 }
