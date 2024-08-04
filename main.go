@@ -83,6 +83,17 @@ func main() {
 		// Where the magic happens
 		//f, _ := os.Create("bar.html")
 		//bar.Render(f)
+		http.HandleFunc("/bar", func(w http.ResponseWriter, r *http.Request) {
+			log.Println("endpoint /bar")
+    	http.ServeFile(w, r, "bar.html")
+		})
+
+		http.HandleFunc("/pie", func(w http.ResponseWriter, r *http.Request) {
+			log.Println("endpoint /pie")
+			http.ServeFile(w, r, "pie.html")
+		})
+
     http.HandleFunc("/", handler)
+		
     http.ListenAndServe(":8080", nil)
 }
