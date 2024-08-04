@@ -22,7 +22,13 @@ type Json struct {
     Response string `json:"response"`
 }
 
+func faviconHandler(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "relative/path/to/favicon.ico")
+}
+
 func handler(w http.ResponseWriter, r *http.Request) {
+		log.Println(r.Host)
+		log.Println(r.URL.Path)
 	 	log.Println("endpoint /")
     fmt.Fprintf(w, "Hello, World!")
 }
@@ -107,6 +113,7 @@ func main() {
 			log.Println("endpoint /pie")
 			http.ServeFile(w, r, "pie.html")
 		})
+		http.HandleFunc("/favicon.ico", faviconHandler)
 
 		http.HandleFunc("/", handler )
 
