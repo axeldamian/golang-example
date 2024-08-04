@@ -67,3 +67,5 @@ Comando que use para deployar
 gcloud run deploy
 ```
 Cuando pregunta por el código fuente, apretar ENTER
+en Service puse nube
+Cuando pregunta por la zona: 32 (us-central1)
