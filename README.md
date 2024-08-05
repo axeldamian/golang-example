@@ -1,6 +1,6 @@
 ## Descripción
 
-La siguiente api rest en golang no tiene utilidad solo usar go, devolver JSON, string, devolver un HTML, devolver 404 si el endpoint no existe, uso de logs.
+La siguiente api rest en golang no tiene utilidad solo usar go, devolver JSON, string, devolver un HTML, devolver 404 si el endpoint no existe, uso de logs y una función que devuelve 2 valores.
 
 ## Endpoints
 
