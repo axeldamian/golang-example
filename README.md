@@ -24,7 +24,11 @@ Ver en HTML un gráfico de torta
 ```
 /pie/
 ```
-
+Ver el favicon
+https://nube-gpbybwgp7q-uc.a.run.app/favicon.ico
+```
+Get /favicon.ico
+```
 Proyecto de golang de ejemplo, para ver si cambio algo.
 El archivo es:
 ```
