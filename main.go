@@ -23,7 +23,7 @@ type Json struct {
 }
 
 func faviconHandler(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "relative/path/to/favicon.ico")
+	http.ServeFile(w, r, "favicon/favicon.ico")
 }
 
 func NotFoundHandler(w http.ResponseWriter, r *http.Request) {
@@ -35,7 +35,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		log.Println(r.URL.Path)
 
 		//var status int = 404
-		endpoints := map[string]bool{"/": true, "/ping": true," /pie": true, "/bar": true}
+		endpoints := map[string]bool{"/": true, "/ping": true," /pie": true, "/bar": true, "/favicon.ico": true}
 		_, in := endpoints[r.URL.Path] // check for existence
 		if ( !in ) {
 				NotFoundHandler(w, r)
