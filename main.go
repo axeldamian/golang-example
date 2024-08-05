@@ -3,7 +3,7 @@ package main
 import(
 	"fmt"
 	"math/rand"
-	"os"
+	//"os"
 	"net/http"
 	"log"
 	"encoding/json"
@@ -35,7 +35,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		log.Println(r.URL.Path)
 
 		//var status int = 404
-		endpoints := map[string]bool{"/": true, "/ping": true," /pie": true, "/bar": true, "/favicon.ico": true}
+		endpoints := map[string]bool{"/": true, "/ping": true," /pie": true, "/bar": true, "/favicon.ico": true, "/favicon/favicon.ico": true}
 		_, in := endpoints[r.URL.Path] // check for existence
 		if ( !in ) {
 				NotFoundHandler(w, r)
@@ -87,10 +87,11 @@ func main() {
 	page.AddCharts(
 		pieBase(),
 	)
+	/*
 	f, err := os.Create("pie.html")
 	if err != nil {
 		panic(err)
-	}
+	}*/
 
 	//page.Render(f)
 
@@ -107,7 +108,7 @@ func main() {
 			AddSeries("Category A", generateBarItems()).
 			AddSeries("Category B", generateBarItems())
 		// Where the magic happens
-		h, _ := os.Create("bar.html")
+		//h, _ := os.Create("bar.html")
 		//bar.Render(h)
 
 		http.HandleFunc("/", handler )
