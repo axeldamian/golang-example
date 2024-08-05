@@ -1,5 +1,30 @@
 ## Descripción
 
+La siguiente api rest en golang no tiene utilidad solo usar go, devolver JSON, string, devolver un HTML, devolver 404 si el endpoint no existe, uso de logs.
+
+## Endpoints
+
+Ver un JSON {
+    "response": "pong"
+}
+```
+/ping
+```
+
+Ver un mensaje en string, "Hello World"
+```
+/
+```
+
+Ver en HTML un gráfico de barras
+```
+/bar/
+```
+Ver en HTML un gráfico de torta
+```
+/pie/
+```
+
 Proyecto de golang de ejemplo, para ver si cambio algo.
 El archivo es:
 ```
