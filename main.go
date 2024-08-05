@@ -26,11 +26,25 @@ func faviconHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "relative/path/to/favicon.ico")
 }
 
+func NotFoundHandler(w http.ResponseWriter, r *http.Request) {
+    http.Error(w, "404 Page Not Found", http.StatusNotFound)
+}
+
 func handler(w http.ResponseWriter, r *http.Request) {
 		log.Println(r.Host)
 		log.Println(r.URL.Path)
-	 	log.Println("endpoint /")
-    fmt.Fprintf(w, "Hello, World!")
+
+		//var status int = 404
+		endpoints := map[string]bool{"/": true, "/ping": true," /pie": true, "/bar": true}
+		_, in := endpoints[r.URL.Path] // check for existence
+		if ( !in ) {
+				NotFoundHandler(w, r)
+				return
+		}
+
+	 		log.Println("endpoint /")
+    	fmt.Fprintf(w, "Hello, World!")
+
 }
 
 func translado(i, j int) (int , int) {
@@ -94,6 +108,9 @@ func main() {
 		// Where the magic happens
 		//f, _ := os.Create("bar.html")
 		//bar.Render(f)
+
+		http.HandleFunc("/", handler )
+
 		http.HandleFunc("/ping", func(w http.ResponseWriter, r *http.Request) {
 			log.Println("endpoint /ping")
 			var value string = "pong"
@@ -113,9 +130,8 @@ func main() {
 			log.Println("endpoint /pie")
 			http.ServeFile(w, r, "pie.html")
 		})
-		http.HandleFunc("/favicon.ico", faviconHandler)
 
-		http.HandleFunc("/", handler )
+		http.HandleFunc("/favicon.ico", faviconHandler)
 
 		log.Println("listening in port 8080...")
     http.ListenAndServe(":8080", nil)
