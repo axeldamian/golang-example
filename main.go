@@ -91,8 +91,9 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	//page.Render(io.MultiWriter(f))
-	page.Render(f)
+
+	//page.Render(f)
+
 	// create a new bar instance
 		bar := charts.NewBar()
 		// set some global options like Title/Legend/ToolTip or anything else
@@ -107,7 +108,7 @@ func main() {
 			AddSeries("Category B", generateBarItems())
 		// Where the magic happens
 		h, _ := os.Create("bar.html")
-		bar.Render(h)
+		//bar.Render(h)
 
 		http.HandleFunc("/", handler )
 
