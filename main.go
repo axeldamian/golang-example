@@ -106,8 +106,8 @@ func main() {
 			AddSeries("Category A", generateBarItems()).
 			AddSeries("Category B", generateBarItems())
 		// Where the magic happens
-		//f, _ := os.Create("bar.html")
-		//bar.Render(f)
+		h, _ := os.Create("bar.html")
+		bar.Render(h)
 
 		http.HandleFunc("/", handler )
 
